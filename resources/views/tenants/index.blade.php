@@ -5,5 +5,9 @@
         </h2>
     </x-slot>
 
-
+    <x-container class="py-12">
+        <button class="btn btn-blue">
+            Button
+        </button>
+    </x-container>
 </x-app-layout>
