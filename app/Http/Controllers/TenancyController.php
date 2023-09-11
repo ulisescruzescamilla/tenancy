@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 
 class TenancyController extends Controller
@@ -19,7 +20,7 @@ class TenancyController extends Controller
      */
     public function create()
     {
-        //
+        return view('tenants.create');
     }
 
     /**
@@ -27,7 +28,19 @@ class TenancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255|min:1|unique:tenants,id'
+        ]);
+
+        $tenant = Tenant::create([
+            'id' => $request->nombre
+        ]);
+
+        $tenant->domains()->create([
+            'domain' => $request->nombre.".".config('tenancy.central_domains')[0]
+        ]);
+
+        return redirect()->route('tenants.index');
     }
 
     /**

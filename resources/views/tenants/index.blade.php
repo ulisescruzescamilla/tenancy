@@ -6,8 +6,12 @@
     </x-slot>
 
     <x-container class="py-12">
-        <button class="btn btn-blue">
-            Button
-        </button>
+        <div class="flex justify-end">
+            <a href="{{route('tenants.create')}}">
+                <button class="btn btn-blue">
+                    Nuevo
+                </button>
+            </a>
+        </div>
     </x-container>
 </x-app-layout>
